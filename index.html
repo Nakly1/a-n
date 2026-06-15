@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversario mi princesa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#ffe7f3;
+    --bg2:#ffd6ec;
+    --bg3:#fff2f9;
+    --soft:#ffb6d5;
+    --mid:#ff8fc0;
+    --deep:#ff5fa2;
+    --text:#c84d86;
+    --textsoft:#d678a3;
+    --cream:#fff7fb;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:linear-gradient(135deg,var(--bg1),var(--bg2) 45%,var(--bg3));min-height:100%}
+  body{
+    font-family:'Quicksand',system-ui,sans-serif;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2) 45%,var(--bg3));
+    min-height:100vh;
+    min-height:100svh;
+    overflow-x:hidden;
+    color:var(--text);
+    position:relative;
+    text-align:center;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-text-size-adjust:100%;
+  }
+  button{touch-action:manipulation}
+
+  /* ===== capas de efectos ===== */
+  .layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+  .heart,.petal,.sparkle{position:absolute;will-change:transform,opacity}
+  .heart{font-size:22px;animation:rise linear forwards}
+  @keyframes rise{
+    0%{transform:translateY(0) scale(.6) rotate(0);opacity:0}
+    10%{opacity:.9}
+    100%{transform:translateY(-115vh) scale(1.1) rotate(40deg);opacity:0}
+  }
+  .petal{width:14px;height:14px;border-radius:60% 0 60% 0;background:rgba(255,150,200,.85);animation:fall linear forwards}
+  @keyframes fall{
+    0%{transform:translateY(-10vh) rotate(0);opacity:0}
+    10%{opacity:.95}
+    100%{transform:translateY(112vh) translateX(60px) rotate(420deg);opacity:0}
+  }
+  .sparkle{color:#fff;text-shadow:0 0 8px #ffaed5;animation:tw 2.6s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.25)}}
+
+  /* ===== contenido ===== */
+  .wrap{position:relative;z-index:3;max-width:760px;margin:0 auto;padding:42px 20px 90px;display:flex;flex-direction:column;align-items:center;gap:18px}
+
+  .top{font-family:'Dancing Script',cursive;font-size:clamp(15px,4vw,22px);color:var(--textsoft);letter-spacing:1px;opacity:.95;animation:fadeDown 1.2s ease both}
+  h1{
+    font-family:'Dancing Script',cursive;
+    font-weight:700;
+    font-size:clamp(46px,11vw,86px);
+    line-height:1.02;
+    background:linear-gradient(90deg,#ff8fc0,#ff5fa2,#ff9ed1,#ff5fa2,#ff8fc0);
+    background-size:300% auto;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 4px 14px rgba(255,95,162,.35));
+    animation:shimmer 6s linear infinite,fadeDown 1.2s ease both;
+  }
+  @keyframes shimmer{to{background-position:300% center}}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+
+  .sub{font-size:clamp(15px,3.4vw,19px);color:var(--textsoft);font-weight:500;max-width:520px;animation:fadeUp 1.4s .2s ease both}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+  /* Hello Kitty */
+  .kitty{width:clamp(150px,40vw,210px);filter:drop-shadow(0 10px 18px rgba(255,95,162,.28));animation:floaty 5s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-14px) rotate(1.5deg)}}
+
+  /* Regalo */
+  .gift-stage{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:4px}
+  .gift{
+    width:clamp(150px,42vw,200px);cursor:pointer;border:none;background:none;
+    animation:giftBounce 2.2s ease-in-out infinite;transition:transform .25s ease;
+    filter:drop-shadow(0 14px 20px rgba(255,95,162,.35));
+  }
+  .gift:hover{transform:scale(1.06)}
+  .gift:active{transform:scale(.95)}
+  @keyframes giftBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .gift .lid{transform-origin:100px 78px;transition:transform .6s cubic-bezier(.6,-0.3,.3,1.4)}
+  .gift.open .lid{transform:translateY(-46px) rotate(-12deg)}
+  .gift.open{animation:none}
+  .tap{font-family:'Dancing Script',cursive;font-size:clamp(20px,4.6vw,28px);color:var(--deep);font-weight:700;animation:pulseTxt 1.6s ease-in-out infinite}
+  @keyframes pulseTxt{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+
+  .teamo{font-family:'Dancing Script',cursive;font-size:clamp(40px,9vw,64px);color:var(--deep);font-weight:700;text-shadow:0 3px 10px rgba(255,95,162,.3);animation:beat 1.5s ease-in-out infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.16)}28%{transform:scale(1)}42%{transform:scale(1.12)}}
+
+  .sign{font-family:'Dancing Script',cursive;font-size:clamp(22px,5vw,30px);color:var(--text);margin-top:4px}
+  .sign small{display:block;font-family:'Quicksand';font-size:13px;color:var(--textsoft);letter-spacing:3px;text-transform:uppercase}
+
+  /* ===== overlay carta ===== */
+  .overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px;
+    background:radial-gradient(circle at 50% 30%,rgba(255,180,215,.55),rgba(255,120,180,.55));
+    backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s}
+  .overlay.show{opacity:1;visibility:visible}
+  .letter{
+    position:relative;width:min(560px,94vw);max-height:88vh;overflow:auto;
+    background:linear-gradient(180deg,#fffafc,#fff0f7);
+    border-radius:26px;padding:34px 30px 30px;
+    box-shadow:0 30px 70px rgba(196,77,134,.4),inset 0 0 0 2px #ffd9ec;
+    transform:scale(.6) rotate(-6deg);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.25,1.2),opacity .5s}
+  .overlay.show .letter{transform:scale(1) rotate(0);opacity:1}
+  .letter::-webkit-scrollbar{width:8px}
+  .letter::-webkit-scrollbar-thumb{background:#ffc1e0;border-radius:8px}
+  .lk{width:96px;margin:-6px auto 6px;display:block;filter:drop-shadow(0 6px 10px rgba(255,95,162,.3))}
+  .letter h2{font-family:'Dancing Script',cursive;font-size:clamp(30px,7vw,42px);color:var(--deep);margin-bottom:10px}
+  .letter p{font-size:clamp(15px,3.6vw,18px);line-height:1.95;color:#b8476f;font-weight:500;white-space:pre-line}
+  .letter .ps{margin-top:16px;font-family:'Dancing Script',cursive;font-size:clamp(22px,5vw,30px);color:var(--deep)}
+  .letter .ps small{display:block;font-family:'Quicksand';font-size:12px;letter-spacing:3px;color:var(--textsoft);text-transform:uppercase;margin-top:2px}
+  .close{position:absolute;top:12px;right:14px;width:38px;height:38px;border:none;border-radius:50%;
+    background:#ffd6ea;color:var(--deep);font-size:20px;cursor:pointer;font-weight:700;transition:transform .2s,background .2s}
+  .close:hover{transform:rotate(90deg) scale(1.08);background:#ffc1e0}
+
+  /* boton musica */
+  .music{position:fixed;bottom:18px;right:18px;z-index:60;width:54px;height:54px;border:none;border-radius:50%;
+    background:linear-gradient(135deg,#ff9ed1,#ff5fa2);color:#fff;font-size:22px;cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,95,162,.45);transition:transform .2s}
+  .music:hover{transform:scale(1.1)}
+  .music .ring{display:inline-block;animation:spin 4s linear infinite}
+  .music.paused .ring{animation-play-state:paused;opacity:.7}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hint{position:fixed;bottom:24px;right:80px;z-index:60;background:#fff;color:var(--text);font-size:12px;
+    padding:7px 12px;border-radius:14px;box-shadow:0 6px 16px rgba(255,95,162,.3);font-weight:600;
+    animation:wob 2s ease-in-out infinite}
+  @keyframes wob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+  .burst{position:fixed;pointer-events:none;z-index:55;font-size:20px;animation:pop .9s ease-out forwards}
+  @keyframes pop{0%{transform:translate(0,0) scale(.4);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.2);opacity:0}}
+
+  /* ===== ajustes celular ===== */
+  @media (max-width:560px){
+    .wrap{padding:30px 16px 96px;gap:14px}
+    .music{bottom:16px;right:16px;width:50px;height:50px;font-size:20px}
+    .hint{right:auto;left:50%;transform:translateX(-50%);bottom:78px;font-size:11px}
+    @keyframes wob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+    .letter{padding:28px 20px 26px;border-radius:22px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s!important;animation-iteration-count:1!important}
+  }
+</style>
+</head>
+<body>
+
+<div class="layer" id="fx"></div>
+
+<main class="wrap">
+  <div class="top">por siempre tú y yo &#10084;</div>
+  <h1>Feliz Aniversario</h1>
+  <p class="sub">un aniversario más amándote y se me siguen acabando las palabras para decirte lo bonito que es tenerte</p>
+
+  <!-- Hello Kitty -->
+  <svg class="kitty" viewBox="0 0 220 185" aria-label="Hello Kitty">
+    <path d="M44 66 L30 18 L86 50 Z" fill="#fff" stroke="#f1a9c9" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M176 66 L190 18 L134 50 Z" fill="#fff" stroke="#f1a9c9" stroke-width="2.5" stroke-linejoin="round"/>
+    <ellipse cx="110" cy="103" rx="78" ry="62" fill="#fff" stroke="#f1a9c9" stroke-width="2.5"/>
+    <ellipse cx="83" cy="103" rx="7.5" ry="11" fill="#4a3b42"/>
+    <ellipse cx="137" cy="103" rx="7.5" ry="11" fill="#4a3b42"/>
+    <ellipse cx="110" cy="120" rx="10" ry="6.5" fill="#ffd24a"/>
+    <g stroke="#e7a7c6" stroke-width="2.4" stroke-linecap="round">
+      <line x1="36" y1="96" x2="70" y2="100"/>
+      <line x1="32" y1="110" x2="68" y2="111"/>
+      <line x1="36" y1="124" x2="70" y2="121"/>
+      <line x1="184" y1="96" x2="150" y2="100"/>
+      <line x1="188" y1="110" x2="152" y2="111"/>
+      <line x1="184" y1="124" x2="150" y2="121"/>
+    </g>
+    <!-- moño -->
+    <g>
+      <path d="M150 56 L176 40 L178 74 Z" fill="#ff7eb3" stroke="#ff5fa2" stroke-width="2"/>
+      <path d="M150 56 L182 48 L186 82 Z" fill="#ff95c4" stroke="#ff5fa2" stroke-width="2"/>
+      <circle cx="152" cy="62" r="9" fill="#ff5fa2"/>
+      <circle cx="149" cy="59" r="2.4" fill="#ffd0e6"/>
+    </g>
+  </svg>
+
+  <!-- Regalo (se abre la carta al hacer click) -->
+  <div class="gift-stage">
+    <button class="gift" id="gift" aria-label="Abrir el regalo">
+      <svg viewBox="0 0 200 200">
+        <rect x="42" y="92" width="116" height="86" rx="8" fill="#ff8fc0"/>
+        <rect x="42" y="92" width="116" height="86" rx="8" fill="url(#shine)" opacity=".35"/>
+        <rect x="90" y="92" width="20" height="86" fill="#fff2f9"/>
+        <g class="lid">
+          <rect x="34" y="68" width="132" height="30" rx="8" fill="#ff6fae"/>
+          <rect x="90" y="68" width="20" height="30" fill="#fff2f9"/>
+          <path d="M100 70 C82 38 52 46 62 66 C70 80 92 72 100 70 Z" fill="#ff7eb3" stroke="#ff5fa2" stroke-width="2"/>
+          <path d="M100 70 C118 38 148 46 138 66 C130 80 108 72 100 70 Z" fill="#ff95c4" stroke="#ff5fa2" stroke-width="2"/>
+          <circle cx="100" cy="68" r="9" fill="#ff5fa2"/>
+        </g>
+        <defs>
+          <linearGradient id="shine" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </button>
+    <div class="tap" id="tap">ábreme con un click &#128156;</div>
+  </div>
+
+  <div class="teamo">Te amo</div>
+
+  <div class="sign">con todo mi corazón<small>att nakly</small></div>
+</main>
+
+<!-- Carta -->
+<div class="overlay" id="overlay">
+  <div class="letter" role="dialog" aria-modal="true">
+    <button class="close" id="close" aria-label="Cerrar">&times;</button>
+    <svg class="lk" viewBox="0 0 220 185">
+      <path d="M44 66 L30 18 L86 50 Z" fill="#fff" stroke="#f1a9c9" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M176 66 L190 18 L134 50 Z" fill="#fff" stroke="#f1a9c9" stroke-width="2.5" stroke-linejoin="round"/>
+      <ellipse cx="110" cy="103" rx="78" ry="62" fill="#fff" stroke="#f1a9c9" stroke-width="2.5"/>
+      <ellipse cx="83" cy="103" rx="7.5" ry="11" fill="#4a3b42"/>
+      <ellipse cx="137" cy="103" rx="7.5" ry="11" fill="#4a3b42"/>
+      <ellipse cx="110" cy="120" rx="10" ry="6.5" fill="#ffd24a"/>
+      <g stroke="#e7a7c6" stroke-width="2.4" stroke-linecap="round">
+        <line x1="36" y1="96" x2="70" y2="100"/><line x1="32" y1="110" x2="68" y2="111"/><line x1="36" y1="124" x2="70" y2="121"/>
+        <line x1="184" y1="96" x2="150" y2="100"/><line x1="188" y1="110" x2="152" y2="111"/><line x1="184" y1="124" x2="150" y2="121"/>
+      </g>
+      <g>
+        <path d="M150 56 L176 40 L178 74 Z" fill="#ff7eb3" stroke="#ff5fa2" stroke-width="2"/>
+        <path d="M150 56 L182 48 L186 82 Z" fill="#ff95c4" stroke="#ff5fa2" stroke-width="2"/>
+        <circle cx="152" cy="62" r="9" fill="#ff5fa2"/>
+      </g>
+    </svg>
+    <h2>Mi princesa</h2>
+    <p>no sé ni por dónde empezar porque cada vez que pienso en ti se me llena el pecho de cosas bonitas y se me olvida hasta respirar
+
+hoy celebramos un aniversario más juntos y quiero que sepas que eres lo mejor que me ha pasado en esta vida sin exagerar nada
+
+gracias por tu paciencia por tus abrazos largos por aguantar mis días raros y por quererme tal como soy
+
+cada mañana a tu lado se siente como abrir un regalo y todavía no me cabe en el pecho la suerte tan grande de tenerte
+
+eres mi lugar favorito mi persona mi paz y mi loquera bonita todo al mismo tiempo
+
+te amo más de lo que las palabras alcanzan a decir y te voy a amar mañana y todos los días que vengan después
+
+feliz aniversario mi princesa gracias por elegirme cada día</p>
+    <div class="ps">tuyo siempre<small>att nakly</small></div>
+  </div>
+</div>
+
+<button class="music paused" id="music" aria-label="Música"><span class="ring">&#9835;</span></button>
+<div class="hint" id="hint">pon la musiquita &#9835;</div>
+
+<script>
+/* ============ efectos flotantes ============ */
+const fx=document.getElementById('fx');
+const heartChars=['❤','💕','🩷','💝','🎀'];
+function spawnHeart(){
+  const h=document.createElement('div');h.className='heart';
+  h.textContent=heartChars[Math.random()*heartChars.length|0];
+  h.style.left=Math.random()*100+'vw';
+  h.style.fontSize=(14+Math.random()*22)+'px';
+  h.style.animationDuration=(6+Math.random()*6)+'s';
+  fx.appendChild(h);setTimeout(()=>h.remove(),12000);
+}
+function spawnPetal(){
+  const p=document.createElement('div');p.className='petal';
+  const c=['#ffb3d4','#ff9ec7','#ffc8e0','#ff85b8'][Math.random()*4|0];
+  p.style.background=c;p.style.left=Math.random()*100+'vw';
+  const s=8+Math.random()*12;p.style.width=s+'px';p.style.height=s+'px';
+  p.style.animationDuration=(7+Math.random()*7)+'s';
+  fx.appendChild(p);setTimeout(()=>p.remove(),14000);
+}
+const small=window.matchMedia('(max-width:560px)').matches;
+function makeSparkles(){
+  const n=small?14:26;
+  for(let i=0;i<n;i++){
+    const s=document.createElement('div');s.className='sparkle';
+    s.textContent='✧';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';
+    s.style.fontSize=(8+Math.random()*14)+'px';s.style.animationDelay=Math.random()*3+'s';
+    fx.appendChild(s);
+  }
+}
+setInterval(spawnHeart,small?1100:650);setInterval(spawnPetal,small?950:520);
+for(let i=0;i<5;i++)setTimeout(spawnHeart,i*150);
+makeSparkles();
+
+/* burst de corazones al abrir */
+function burst(x,y){
+  const e=['❤','💕','🎀','✨','💝'];
+  for(let i=0;i<(small?14:22);i++){
+    const b=document.createElement('div');b.className='burst';
+    b.textContent=e[Math.random()*e.length|0];
+    b.style.left=x+'px';b.style.top=y+'px';
+    const ang=Math.random()*6.28,dist=80+Math.random()*150;
+    b.style.setProperty('--dx',Math.cos(ang)*dist+'px');
+    b.style.setProperty('--dy',Math.sin(ang)*dist+'px');
+    b.style.fontSize=(16+Math.random()*16)+'px';
+    document.body.appendChild(b);setTimeout(()=>b.remove(),900);
+  }
+}
+
+/* ============ carta ============ */
+const gift=document.getElementById('gift');
+const overlay=document.getElementById('overlay');
+const tap=document.getElementById('tap');
+function openLetter(){
+  gift.classList.add('open');
+  const r=gift.getBoundingClientRect();
+  burst(r.left+r.width/2,r.top+r.height/2);
+  startMusic();
+  setTimeout(()=>{overlay.classList.add('show');},480);
+  tap.textContent='¡feliz aniversario! 💖';
+}
+gift.addEventListener('click',openLetter);
+document.getElementById('close').addEventListener('click',()=>{overlay.classList.remove('show');gift.classList.remove('open');});
+overlay.addEventListener('click',e=>{if(e.target===overlay){overlay.classList.remove('show');gift.classList.remove('open');}});
+
+/* ============ piano suave (Web Audio) ============ */
+let actx,master,delay,playing=false,timer,nextT;
+const N={C3:130.81,D3:146.83,E3:164.81,F3:174.61,G3:196.00,A3:220.00,B3:246.94,
+  C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392.00,A4:440.00,B4:493.88,
+  C5:523.25,D5:587.33,E5:659.25,G2:98.00,A2:110.00,F2:87.31,C2:65.41};
+/* melodía romántica I-V-vi-IV, loop de 8s */
+const melody=[
+  ['E4',0,.9],['G4',.5,.9],['C5',1,1.1],['G4',1.5,.7],
+  ['D4',2,.9],['G4',2.5,.9],['B4',3,1.1],['G4',3.5,.7],
+  ['C4',4,.9],['E4',4.5,.9],['A4',5,1.1],['E4',5.5,.7],
+  ['C4',6,.9],['F4',6.5,.9],['A4',7,1.1],['C5',7.5,1.1]
+];
+const bass=[['C3',0,1.9],['G2',2,1.9],['A2',4,1.9],['F2',6,1.9]];
+
+function note(freq,t,dur,vol,type){
+  const o=actx.createOscillator(),g=actx.createGain();
+  o.type=type||'triangle';o.frequency.value=freq;
+  g.gain.setValueAtTime(0,t);
+  g.gain.linearRampToValueAtTime(vol,t+.04);
+  g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  o.connect(g);g.connect(master);g.connect(delay);
+  o.start(t);o.stop(t+dur+.1);
+}
+function loop(start){
+  melody.forEach(n=>note(N[n[0]],start+n[1],n[2],.13,'triangle'));
+  bass.forEach(n=>note(N[n[0]],start+n[1],n[2],.10,'sine'));
+}
+function tick(){
+  while(nextT<actx.currentTime+.6){loop(nextT);nextT+=8;}
+}
+function startMusic(){
+  if(playing)return;
+  if(!actx){
+    actx=new (window.AudioContext||window.webkitAudioContext)();
+    master=actx.createGain();master.gain.value=.5;master.connect(actx.destination);
+    delay=actx.createDelay();delay.delayTime.value=.32;
+    const fb=actx.createGain();fb.gain.value=.28;
+    const wet=actx.createGain();wet.gain.value=.35;
+    delay.connect(fb);fb.connect(delay);delay.connect(wet);wet.connect(actx.destination);
+  }
+  if(actx.state==='suspended')actx.resume();
+  nextT=actx.currentTime+.1;tick();
+  timer=setInterval(tick,250);
+  playing=true;
+  document.getElementById('music').classList.remove('paused');
+  document.getElementById('hint').style.display='none';
+}
+function stopMusic(){
+  if(!playing)return;clearInterval(timer);
+  if(actx)actx.suspend();
+  playing=false;document.getElementById('music').classList.add('paused');
+}
+document.getElementById('music').addEventListener('click',()=>{playing?stopMusic():startMusic();});
+/* arrancar musiquita al primer toque en cualquier lado */
+window.addEventListener('pointerdown',function once(){startMusic();window.removeEventListener('pointerdown',once);},{once:true});
+</script>
+</body>
+</html>
